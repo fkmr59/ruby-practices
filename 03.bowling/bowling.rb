@@ -27,10 +27,16 @@ frames = []
 shots.each_slice(2) do |s|
   frames << s
 end
-# 合計する
+# スコアの合計する
+# スペアとストライクを加算
 point = 0
 frames.each do |frame|
-  point += frame.sum
+  if frame[0] == 10 # strike
+    point += 30
+  elsif frame.sum == 10 # spare
+    point += frame[0] + 10
+  else
+    point += frame.sum
+  end
 end
 puts point
-# スペアとストライクを加算
