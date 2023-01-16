@@ -22,7 +22,11 @@ scores.each do |s|
     shots << s.to_i
   end
 end
-p shots
 # 投球（フレーム）ごとに分割
+frames = []
+shots.each_slice(2) do |s|
+  frames << s
+end
+p frames
 # 合計する
 # スペアとストライクを加算
