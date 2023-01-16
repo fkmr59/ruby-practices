@@ -9,8 +9,7 @@ opt.on('')
 opt.parse!(ARGV)
 score = ARGV[0]
 # 取得した引数を1投毎に分割する
-p score.split(',')
-
+score.split(',')
 # 数字に変換
 # 投球（フレーム）ごとに分割
 # 合計する
