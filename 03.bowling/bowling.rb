@@ -9,13 +9,13 @@ opt.on('')
 opt.parse!(ARGV)
 score = ARGV[0]
 # 取得した引数を1投毎に分割する
-score.split(',')
+score.split(",")
 # 数値に変換
 score = ARGV[0]
-scores = score.split(',')
+scores = score.split(",")
 shots = []
 scores.each do |s|
-  if s == 'X' # strike
+  if s == "X" # strike
     shots << 10
     shots << 0
   else
@@ -26,28 +26,30 @@ end
 frames = []
 shots.each_slice(2) do |s|
   frames << s
+  breack = 
 end
-p frames
-# スコアの合計する
-point = 0
-frames.each do |frame|
-#   point += frame.sum
-  if frame.sum == 10 # spare
-    point += frame[0].sum
-    p frame.sum
-  end
+# 最後のレーンを正規化と再配列
+last_fram = frames[9..11]
+last_scores = last_fram.flatten
+last_score = last_scores.select do |x|
+  x == 10
 end
 
-puts point
-# スペアとストライクを加算
+p last_score
+p frames
+# スコアの合計する
+# ストライクとスペアの判断
 # point = 0
 # frames.each do |frame|
-#   if frame[0] == 10 # strike
-#     point += 30
+#   # ストライクなら次のレーンの1・2投目を足す
+#   n = 0
+#   if frame[n] == 10 # strike
+#     point += frame.sum + frame[n += 1]
+#   # スペアなら次のレーンの1投目の足す
 #   elsif frame.sum == 10 # spare
 #     point += frame[0] + 10
 #   else
 #     point += frame.sum
 #   end
 # end
-puts point
+# puts point
