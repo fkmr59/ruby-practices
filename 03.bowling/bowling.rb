@@ -3,9 +3,7 @@ require 'optparse'
 
 # コマンドラインの入力値（引数）を取り出す
 opt = OptionParser.new
-
 opt.on('')
-
 opt.parse!(ARGV)
 score = ARGV[0]
 # 取得した引数を1投毎に分割する
@@ -26,30 +24,27 @@ end
 frames = []
 shots.each_slice(2) do |s|
   frames << s
-  breack = 
-end
-# 最後のレーンを正規化と再配列
-last_fram = frames[9..11]
-last_scores = last_fram.flatten
-last_score = last_scores.select do |x|
-  x == 10
 end
 
-p last_score
 p frames
+
 # スコアの合計する
 # ストライクとスペアの判断
-# point = 0
-# frames.each do |frame|
-#   # ストライクなら次のレーンの1・2投目を足す
-#   n = 0
-#   if frame[n] == 10 # strike
-#     point += frame.sum + frame[n += 1]
-#   # スペアなら次のレーンの1投目の足す
-#   elsif frame.sum == 10 # spare
-#     point += frame[0] + 10
-#   else
-#     point += frame.sum
-#   end
-# end
-# puts point
+point = 0
+frames.each_with_index do |frame, index|
+  # ストライクなら次のレーンの1・2投目を足す
+  if frame[0] == 10 # strike
+    f = frames[index+1]
+    point = frame.sum + f(0)
+    # p index
+    # p f
+  # スペアなら次のレーンの1投目の足す
+  elsif frame.sum == 10 # spare
+    f = frames[index+1]
+    # p index
+    # p f
+  else
+    point += frame.sum
+  end
+end
+puts point
