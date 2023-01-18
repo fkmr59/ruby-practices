@@ -15,34 +15,53 @@ shots = []
 scores.each do |s|
   if s == "X" # strike
     shots << 10
-    shots << 0
   else
     shots << s.to_i
   end
 end
 # 投球（フレーム）ごとに分割
 frames = []
-shots.each_slice(2) do |s|
-  frames << s
+(1..10).each do |frame_count|
+  frame_index = frame_count - 1
+  if frame_count < 10
+    if shots[0] == 10
+      frames[frame_index] = shots.slice!(0, 1)
+    else
+      frames[frame_index] = shots.slice!(0, 2)
+    end
+  else
+    if shots[0] == 10
+      frames[frame_index] = shots.slice!(0, 3)
+    elsif shots.slice(0, 2).sum == 10
+      frames[frame_index] = shots.slice!(0, 3)
+    else
+      frames[frame_index] = shots.slice!(0, 2)
+    end
+  end
 end
-
-p frames
-
 # スコアの合計する
 # ストライクとスペアの判断
 point = 0
 frames.each_with_index do |frame, index|
-  # ストライクなら次のレーンの1・2投目を足す
-  if frame[0] == 10 # strike
-    f = frames[index+1]
-    point = frame.sum + f(0)
-    # p index
-    # p f
-  # スペアなら次のレーンの1投目の足す
-  elsif frame.sum == 10 # spare
-    f = frames[index+1]
-    # p index
-    # p f
+  if index <= 8
+    # ストライクなら次のフレームの1・2投目を足す
+    if frame[0] == 10 # strike
+      next_frame = frames[index+1]
+      # 連続ストライクなら次のフレームと次のフレーム次のを足す
+      if next_frame == [10]
+        after_next_frame = frames[index+1]
+        point += (frame.sum + next_frame.sum + after_next_frame.sum)
+      else
+        next_frame_score = next_frame.first(2)
+        point += (frame.sum + next_frame_score.sum)
+      end
+    # スペアなら次のフレームの1投目の足す
+    elsif frame.sum == 10 # spare
+      next_frame = frames[index+1]
+      point += (frame.sum + next_frame.first)
+    else
+      point += frame.sum
+    end
   else
     point += frame.sum
   end
