@@ -12,11 +12,11 @@ score.split(",")
 score = ARGV[0]
 scores = score.split(",")
 shots = []
-scores.each do |s|
-  if s == "X" # strike
+scores.each do |scores_string|
+  if scores_string == "X" # strike
     shots << 10
   else
-    shots << s.to_i
+    shots << scores_string.to_i
   end
 end
 # 投球（フレーム）ごとに分割
@@ -46,10 +46,10 @@ frames.each_with_index do |frame, index|
   if index <= 8
     # ストライクなら次のフレームの1・2投目を足す
     if frame[0] == 10 # strike
-      next_frame = frames[index+1]
+      next_frame = frames[index + 1]
       # 連続ストライクなら次のフレームと次のフレーム次のを足す
       if next_frame == [10]
-        after_next_frame = frames[index+1]
+        after_next_frame = frames[index + 1]
         point += (frame.sum + next_frame.sum + after_next_frame.sum)
       else
         next_frame_score = next_frame.first(2)
@@ -57,7 +57,7 @@ frames.each_with_index do |frame, index|
       end
     # スペアなら次のフレームの1投目の足す
     elsif frame.sum == 10 # spare
-      next_frame = frames[index+1]
+      next_frame = frames[index + 1]
       point += (frame.sum + next_frame.first)
     else
       point += frame.sum
