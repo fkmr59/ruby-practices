@@ -10,17 +10,17 @@ opt.on('-m [v]') {|v| option[:m] = v}
 
 opt.parse!(ARGV)
 
-year_num = option[:y].to_i
-month_num = option[:m].to_i
+year = option[:y].to_i
+month = option[:m].to_i
 
 today = Date.today
 
-if year_num > 0 && month_num > 0
-  @run_today = Date.new(year_num, month_num)
-elsif year_num > 0
-  @run_today = Date.new(year = year_num, mon = today.month)
-elsif month_num > 0
-  @run_today = Date.new(year = today.year, mon = month_num)
+if year > 0 && month > 0
+  @run_today = Date.new(year, month)
+elsif year > 0
+  @run_today = Date.new(year = year, mon = today.month)
+elsif month > 0
+  @run_today = Date.new(year = today.year, mon = month)
 else
   @run_today = Date.today
 end
