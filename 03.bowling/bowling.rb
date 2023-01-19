@@ -7,37 +7,35 @@ opt.on('')
 opt.parse!(ARGV)
 score = ARGV[0]
 # 取得した引数を1投毎に分割する
-score.split(",")
+score.split(',')
 # 数値に変換
 score = ARGV[0]
-scores = score.split(",")
+scores = score.split(',')
 shots = []
 scores.each do |scores_string|
-  if scores_string == "X" # strike
-    shots << 10
-  else
-    shots << scores_string.to_i
-  end
+  shots << if scores_string == 'X' # strike
+             10
+           else
+             scores_string.to_i
+           end
 end
 # 投球（フレーム）ごとに分割
 frames = []
 (1..10).each do |frame_count|
   frame_index = frame_count - 1
-  if frame_count < 10
-    if shots[0] == 10
-      frames[frame_index] = shots.slice!(0, 1)
-    else
-      frames[frame_index] = shots.slice!(0, 2)
-    end
-  else
-    if shots[0] == 10
-      frames[frame_index] = shots.slice!(0, 3)
-    elsif shots.slice(0, 2).sum == 10
-      frames[frame_index] = shots.slice!(0, 3)
-    else
-      frames[frame_index] = shots.slice!(0, 2)
-    end
-  end
+  frames[frame_index] = if frame_count < 10
+                          if shots[0] == 10
+                            shots.slice!(0, 1)
+                          else
+                            shots.slice!(0, 2)
+                          end
+                        elsif shots[0] == 10
+                          shots.slice!(0, 3)
+                        elsif shots.slice(0, 2).sum == 10
+                          shots.slice!(0, 3)
+                        else
+                          shots.slice!(0, 2)
+                        end
 end
 # スコアの合計する
 # ストライクとスペアの判断
