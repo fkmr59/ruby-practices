@@ -43,15 +43,15 @@ opt.on('-m [v]') {|v| option[:m] = v}
 opt.parse!(ARGV)
 
 # コマンドラインで入力された年月の数値化
-year_num = option[:y].to_i
-month_num = option[:m].to_i
+year_input = option[:y].to_i
+month_input = option[:m].to_i
 # コマンドラインの入力がなかった時に現在の日にちをあてる
 today = Date.today
 # 入力値を使いdateを取得する
-if year_num > 0 
-  run_date = Date.new(year = year_num , month = today.month)
-elsif month_num > 0
-  run_date = Date.new(year = today.year, month = month_num)
+if year_input > 0 
+  run_date = Date.new(year_input , today.month)
+elsif month_input > 0
+  run_date = Date.new(today.year, month_input)
 else
   run_date = today
 end
