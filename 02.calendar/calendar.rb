@@ -4,35 +4,35 @@ require 'optparse'
 
 # 指定した年月を文字列で表現
 def year_month_str(subject_date)
-  output_string = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
+  str_year_month = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
 end
 # 曜日を文字列として表現
 def weeks_str
   "\s日\s月\s火\s水\s木\s金\s土"
 end
-# # 指定した年月の日数の取得
-# def month_days(get_date)
-#   # first_day = Date.new(get_date.year, get_date.month, 1)
-#   last_day = Date.new(get_date.year, get_date.month, -1)
-
-#   output_string = ""
-#   output_string += year_month_str.center(21) + "\n"
-#   output_string += weeks_str + "\n"
+# 指定した年月の日数の取得
+def month_days(get_date)
+  # 指定した年月の最終日を文字列で取得
+  last_day_str = Date.new(get_date.year, get_date.month, -1)
+  # last_day_strを使って最終日を取得
+  end_day = last_day_str.day
+  # 月頭の空白処理
+  output_string = ""
+  output_string += "".rjust(3) * get_date.wday
+  # output_string += year_month_str.center(21) + "\n"
+  # output_string += weeks_str + "\n"
   
-#   # 月頭の空白処理
-#   output_string += "".rjust(3) * first_day.wday
-
-#   # 取得した日数の月ごとの正規化
-#   # 日数の繰り返し
-#   (1..last_day).each do |day|
-#     if day.wday == 6
-#       output_string += day.day.to_s.rjust(3) + "\n"
-#     else
-#       output_string += day.day.to_s.rjust(3)
-#     end
-#   end
-#   output_string
-# end
+  # 取得した日数の月ごとの正規化
+  # 日数の繰り返し
+  (1..end_day).each do |day|
+    if day.wday == 6
+      output_string += day.day.to_s.rjust(3) + "\n"
+    # else
+    #   output_string += day.day.to_s.rjust(3)
+    end
+  end
+  output_string
+end
 
 opt = OptionParser.new
 option = {}
@@ -59,7 +59,8 @@ end
 run_date = Date.new(year, month)
 
 p run_date
-p year_month_str(run_date)
 
+# 年月の文字列の表示
+puts year_month_str(run_date).center(21) + "\n"
 # 正規化した日数の表示
-# puts month_days(run_date)
+puts month_days(run_date)
