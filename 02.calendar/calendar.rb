@@ -48,14 +48,18 @@ month_input = option[:m].to_i
 # コマンドラインの入力がなかった時に現在の日にちをあてる
 today = Date.today
 # 入力値を使いdateを取得する
-if year_input > 0 
-  run_date = Date.new(year_input , today.month)
-elsif month_input > 0
-  run_date = Date.new(today.year, month_input)
-else
-  run_date = today
+year = Date.today.year
+month = Date.today.month
+if year_input > 0
+  year = year_input
 end
+if month_input > 0
+  month = month_input
+end
+run_date = Date.new(year, month)
+
 p run_date
 p year_month_str(run_date)
+
 # 正規化した日数の表示
 # puts month_days(run_date)
