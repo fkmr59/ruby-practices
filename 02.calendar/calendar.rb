@@ -5,14 +5,14 @@ require 'optparse'
 # 指定した年月と曜日の文字列を文字列で表現
 def year_month_week_str(subject_date)
   # 年月を文字列
-  str_year_month = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
+  year_month_str = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
   # 曜日の文字列
   week_str = "\s日\s月\s火\s水\s木\s金\s土"
-  puts str_year_month.center(25) + "\n" + week_str.center(1)
+  puts year_month_str.center(25) + "\n" + week_str.center(1)
 end
 
-# 指定した年月の日数の取得
-def month_days(insert_date)
+# 指定した年月の日数データを週ごとに表示
+def weekly_date(insert_date)
   # 指定した年月の最終日を文字列で取得
   last_day_str = Date.new(insert_date.year, insert_date.month, -1)
   # last_day_strを使って最終日を取得
@@ -59,4 +59,4 @@ run_date = Date.new(year, month)
 # 年月の文字列の表示
 year_month_week_str(run_date)
 # 正規化した日数の表示
-month_days(run_date)
+weekly_date(run_date)
