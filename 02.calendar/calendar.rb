@@ -2,7 +2,6 @@
 require 'date'
 require 'optparse'
 
-# 指定した年月と曜日の文字列を文字列で表現
 def year_month_week_str(subject_date)
   # 年月を文字列
   year_month_str = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
