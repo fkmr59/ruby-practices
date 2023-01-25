@@ -37,6 +37,11 @@ end
 # ストライクとスペアの判断
 point = 0
 frames.each_with_index do |frame, index|
+  if index > 8
+    point += frame.sum
+    next
+  end
+
   if index <= 8
     # ストライクなら次のフレームの1・2投目を足す
     if frame[0] == 10 # strike
@@ -56,8 +61,6 @@ frames.each_with_index do |frame, index|
     else
       point += frame.sum
     end
-  else
-    point += frame.sum
   end
 end
 puts point
