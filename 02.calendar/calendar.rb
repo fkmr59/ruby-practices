@@ -2,26 +2,22 @@
 require 'date'
 require 'optparse'
 
-def year_month_week_str(subject_date)
+def output_year_month_day_of_week_str(subject_date)
   # 年月を文字列
-  year_month_str = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
+  year_month = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
   # 曜日の文字列
-  week_str = "\s日\s月\s火\s水\s木\s金\s土"
-  puts year_month_str.center(25) + "\n" + week_str.center(1)
+  weeks = "\s日\s月\s火\s水\s木\s金\s土"
+  puts year_month.center(25) + "\n" + weeks.center(1)
 end
 
 # 指定した年月の日数データを週ごとに表示
-def weekly_date(insert_date)
+def output_numdays_of_specified_year_month_foreach_week(insert_date)
   # 指定した年月の最終日を文字列で取得
-  last_day_str = Date.new(insert_date.year, insert_date.month, -1)
-  # last_day_strを使って最終日を取得
-  end_day = last_day_str.day
+  last_day = Date.new(insert_date.year, insert_date.month, -1)
   # 月頭の空白処理
-  output_string = ''
-  output_string += ''.rjust(3) * insert_date.wday
-  # 取得した日数の月ごとの正規化
-  # 日数の繰り返し
-  (1..end_day).each do |day|
+  output_string = ''.rjust(3) * insert_date.wday
+  # 取得した日数を1週間ごとに繰り返し
+  (1..last_day.day).each do |day|
     output_string += day.to_s.rjust(3)
     # 空白の個数と変数dayを足した数が7倍数であることを判断する
     if (insert_date.wday + day) % 7 == 0
@@ -42,20 +38,16 @@ opt.parse!(ARGV)
 # コマンドラインで入力された年月の数値化
 year_input = option[:y].to_i
 month_input = option[:m].to_i
-# コマンドラインの入力がなかった時に現在の日にちをあてる
-today = Date.today
-# 入力値を使いdateを取得する
-year = Date.today.year
-month = Date.today.month
-if year_input > 0
+# コマンドラインの入力値がない時は現在の日にちをあてる
+# コマンドラインの入力値を使いdateを取得する
+if option == {}
+  year = Date.today.year
+  month = Date.today.month
+else
   year = year_input
-end
-if month_input > 0
   month = month_input
 end
 run_date = Date.new(year, month)
 
-# 年月の文字列の表示
-year_month_week_str(run_date)
-# 正規化した日数の表示
-weekly_date(run_date)
+output_year_month_day_of_week_str(run_date)
+output_numdays_of_specified_year_month_foreach_week(run_date)
