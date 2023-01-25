@@ -43,8 +43,8 @@ frames.each_with_index do |frame, index|
       next_frame = frames[index + 1]
       # 連続ストライクなら次のフレームと次のフレーム次のを足す
       if next_frame == [10]
-        after_next_frame = frames[index + 1]
-        point += (frame.sum + next_frame.sum + after_next_frame.sum)
+        after_next_frame = frames[index + 2]
+        point += (frame.sum + next_frame.sum + after_next_frame.first)
       else
         next_frame_score = next_frame.first(2)
         point += (frame.sum + next_frame_score.sum)
