@@ -29,12 +29,8 @@ frames = []
                           else
                             shots.slice!(0, 2)
                           end
-                        elsif shots[0] == 10
-                          shots.slice!(0, 3)
-                        elsif shots.slice(0, 2).sum == 10
-                          shots.slice!(0, 3)
                         else
-                          shots.slice!(0, 2)
+                          shots
                         end
 end
 # スコアの合計する
