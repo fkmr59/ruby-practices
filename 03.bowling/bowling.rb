@@ -34,19 +34,50 @@ frames = []
                         elsif shots.slice(0, 2).sum == 10
                           shots.slice!(0, 3)
                         else
-                          shots.slice!(0, 2)
+                          shots
                         end
 end
 # スコアの合計する
 # ストライクとスペアの判断
 point = 0
+# frames.each_with_index do |frame, index|
+#   if index <= 8
+#     # ストライクなら次のフレームの1・2投目を足す
+#     if frame[0] == 10 # strike
+#       next_frame = frames[index + 1]
+#       # 連続ストライクなら次のフレームと次のフレーム次のを足す
+#       if next_frame == [10]
+#         after_next_frame = frames[index + 1]
+#         point += (frame.sum + next_frame.sum + after_next_frame.sum)
+#       else
+#         next_frame_score = next_frame.first(2)
+#         point += (frame.sum + next_frame_score.sum)
+#       end
+#     # スペアなら次のフレームの1投目の足す
+#     elsif frame.sum == 10 # spare
+#       next_frame = frames[index + 1]
+#       point += (frame.sum + next_frame.first)
+#     else
+#       point += frame.sum
+#     end
+#   else
+#     point += frame.sum
+#   end
+# end
+
+# 改善用のコード範囲のコピー
 frames.each_with_index do |frame, index|
+  p [frame, index]
+  if index > 8
+    point += point += frame.sum
+    next
+  end
   if index <= 8
     # ストライクなら次のフレームの1・2投目を足す
     if frame[0] == 10 # strike
       next_frame = frames[index + 1]
       # 連続ストライクなら次のフレームと次のフレーム次のを足す
-      if next_frame == [10]
+      if next_frame[0] == 10
         after_next_frame = frames[index + 1]
         point += (frame.sum + next_frame.sum + after_next_frame.sum)
       else
@@ -54,14 +85,13 @@ frames.each_with_index do |frame, index|
         point += (frame.sum + next_frame_score.sum)
       end
     # スペアなら次のフレームの1投目の足す
-    elsif frame.sum == 10 # spare
-      next_frame = frames[index + 1]
-      point += (frame.sum + next_frame.first)
-    else
-      point += frame.sum
+    # elsif frame.sum == 10 # spare
+    #   next_frame = frames[index + 1]
+    #   point += (frame.sum + next_frame.first)
+    # else
+    #   point += frame.sum
     end
-  else
-    point += frame.sum
   end
 end
+
 puts point
