@@ -2,27 +2,25 @@
 require 'date'
 require 'optparse'
 
-def output_year_month_day_of_week_str(subject_date)
+def output_year_month_week_str(subject_data)
   # 年月を文字列
-  year_month = subject_date.month.to_s + "月" + "\s" + subject_date.year.to_s
+  year_month = subject_data.month.to_s + '月' + "\s" + subject_data.year.to_s
   # 曜日の文字列
   weeks = "\s日\s月\s火\s水\s木\s金\s土"
   puts year_month.center(25) + "\n" + weeks.center(1)
 end
 
 # 指定した年月の日数データを週ごとに表示
-def output_numdays_of_specified_year_month_foreach_week(insert_date)
+def output_numdays_of_day(insert_data)
   # 指定した年月の最終日を文字列で取得
-  last_day = Date.new(insert_date.year, insert_date.month, -1)
+  last_day = Date.new(insert_data.year, insert_data.month, -1)
   # 月頭の空白処理
-  output_string = ''.rjust(3) * insert_date.wday
+  output_string = ''.rjust(3) * insert_data.wday
   # 取得した日数を1週間ごとに繰り返し
   (1..last_day.day).each do |day|
     output_string += day.to_s.rjust(3)
     # 空白の個数と変数dayを足した数が7倍数であることを判断する
-    if (insert_date.wday + day) % 7 == 0
-      output_string += "\n"
-    end
+    output_string += "\n" if (insert_data.wday + day) % 7 == 0
   end
   puts output_string
 end
@@ -30,8 +28,8 @@ end
 opt = OptionParser.new
 option = {}
 
-opt.on('-y [v]') {|v| option[:y] = v}
-opt.on('-m [v]') {|v| option[:m] = v}
+opt.on('-y [v]') { |v| option[:y] = v }
+opt.on('-m [v]') { |v| option[:m] = v }
 
 opt.parse!(ARGV)
 
@@ -47,7 +45,7 @@ else
   year = year_input
   month = month_input
 end
-run_date = Date.new(year, month)
+run_data = Date.new(year, month)
 
-output_year_month_day_of_week_str(run_date)
-output_numdays_of_specified_year_month_foreach_week(run_date)
+output_year_month_week_str(run_data)
+output_numdays_of_day(run_data)
