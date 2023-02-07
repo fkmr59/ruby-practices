@@ -17,7 +17,6 @@ def output_one_row_items(dir, hope_roundup_columns)
         items_arrays_by_row[index] = []
       end
       items_arrays_by_row[index] << items_array[index]
-      p items_arrays_by_row
     end
     index += 1
   end
