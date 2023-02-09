@@ -21,7 +21,7 @@ def output_weeks_day(insert_data)
   (1..last_day.day).each do |day|
     output_string += day.to_s.rjust(3)
     # 空白の個数と変数dayを足した数が7倍数であることを判断する
-    output_string += "\n" if (insert_data.wday + day) % 7 == 0
+    output_string += "\n" if ((insert_data.wday + day) % 7).zero?
   end
   puts output_string
 end
@@ -39,8 +39,8 @@ year_input = option[:y].to_i
 month_input = option[:m].to_i
 # コマンドラインの入力値がない時は現在の日にちをあてる
 # コマンドラインの入力値を使いdateを取得する
-year = option[:y] == nil ? Date.today.year : year_input
-month = option[:m] == nil ? Date.today.month : month_input
+year = option[:y] == nil? ? Date.today.year : year_input
+month = option[:m] == nil? ? Date.today.month : month_input
 
 run_data = Date.new(year, month)
 
