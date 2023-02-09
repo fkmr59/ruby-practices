@@ -1,5 +1,5 @@
-# frozen_string_literal: true
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'optparse'
 
@@ -14,13 +14,14 @@ score.split(',')
 score = ARGV[0]
 scores = score.split(',')
 shots = []
-scores.each do |scores_string|
-  shots << if scores_string == 'X' # strike
-             10
-           else
-             scores_string.to_i
-           end
+shots = scores.map do |scores_string|
+  if scores_string == 'X'
+    10
+  else
+    scores_string.to_i
+  end
 end
+
 # 投球（フレーム）ごとに分割
 frames = (1..10).map do |frame_count|
   if frame_count < 10
@@ -36,6 +37,7 @@ end
 
 # スコアの合計する
 # ストライクとスペアの判断
+# point = frames.each_with_index.sum do |frame, index|
 point = frames.each_with_index.sum do |frame, index|
   next frame.sum if index > 8
 
