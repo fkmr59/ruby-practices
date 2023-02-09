@@ -2,16 +2,14 @@
 require 'date'
 require 'optparse'
 
-def output_year_month_week_str(subject_data)
-  # 年月を文字列
+def output_year_month_week(subject_data)
   year_month = subject_data.month.to_s + '月' + "\s" + subject_data.year.to_s
-  # 曜日の文字列
   weeks = "\s日\s月\s火\s水\s木\s金\s土"
-  puts year_month.center(25) + "\n" + weeks.center(1)
+  puts year_month.center(20) + "\n" + weeks.center(1)
 end
 
 # 指定した年月の日数データを週ごとに表示
-def output_numdays_of_day(insert_data)
+def output_weeks_day(insert_data)
   # 指定した年月の最終日を文字列で取得
   last_day = Date.new(insert_data.year, insert_data.month, -1)
   # 月頭の空白処理
@@ -38,14 +36,11 @@ year_input = option[:y].to_i
 month_input = option[:m].to_i
 # コマンドラインの入力値がない時は現在の日にちをあてる
 # コマンドラインの入力値を使いdateを取得する
-if option == {}
-  year = Date.today.year
-  month = Date.today.month
-else
-  year = year_input
-  month = month_input
-end
+
+option[:y] == nil ? year = Date.today.year : year = year_input
+option[:m] == nil ? month = Date.today.month : month = month_input
+
 run_data = Date.new(year, month)
 
-output_year_month_week_str(run_data)
-output_numdays_of_day(run_data)
+output_year_month_week(run_data)
+output_weeks_day(run_data)
