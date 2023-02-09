@@ -11,7 +11,6 @@ def output_one_row_items(dir, hope_num_columns, surplus)
       end
       dir.each_slice(cut_items) do |array_items|
         items_arrays_by_column << array_items
-        p items_arrays_by_column
       end
     else
       dir.each_slice(cut_items) do |array_items|
@@ -47,7 +46,7 @@ end
 # ディレクトリに存在するファイルの取得
 dir = Dir.glob("*")
 # 列の指定(hope_num_columnsの数値だけを希望する列数に変える)
-hope_num_columns = 7
+hope_num_columns = 5
 surplus = dir.length % hope_num_columns
 
 # 1行に出力する要素の数
