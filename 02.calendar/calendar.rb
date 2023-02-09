@@ -39,8 +39,8 @@ year_input = option[:y].to_i
 month_input = option[:m].to_i
 # コマンドラインの入力値がない時は現在の日にちをあてる
 # コマンドラインの入力値を使いdateを取得する
-year = option[:y] == nil? ? Date.today.year : year_input
-month = option[:m] == nil? ? Date.today.month : month_input
+year = option[:y].nil? ? Date.today.year : year_input
+month = option[:m].nil? ? Date.today.month : month_input
 
 run_data = Date.new(year, month)
 
