@@ -4,18 +4,14 @@
 def output_one_row_items(dir, hope_num_columns, surplus)
   items_arrays_by_column = []
   cut_items = dir.length / hope_num_columns
-  if surplus > 0
+  if surplus.positive?
     surplus.times do
       array_items = dir.slice!(0..cut_items)
       items_arrays_by_column << array_items
     end
-    dir.each_slice(cut_items) do |array_items|
-      items_arrays_by_column << array_items
-    end
-  else
-    dir.each_slice(cut_items) do |array_items|
-      items_arrays_by_column << array_items
-    end
+  end
+  dir.each_slice(cut_items) do |array_items|
+    items_arrays_by_column << array_items
   end
 
   rebuild_repeat = items_arrays_by_column[0].length
@@ -44,7 +40,7 @@ end
 # ディレクトリに存在するファイルの取得
 dir = Dir.glob('*')
 # 列の指定(hope_num_columnsの数値だけを希望する列数に変える)
-hope_num_columns = 5
+hope_num_columns = 10
 surplus = dir.length % hope_num_columns
 
 # 1行に出力する要素の数
