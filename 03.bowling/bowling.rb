@@ -37,10 +37,9 @@ end
 
 # スコアの合計する
 # ストライクとスペアの判断
-# point = frames.each_with_index.sum do |frame, index|
 point = frames.each_with_index.sum do |frame, index|
-  next frame.sum if index > 8
-
+  next frame.sum if index >= 9 || frame.sum != 10
+  
   # ストライクなら次のフレームの1・2投目を足す
   if frame[0] == 10 # strike
     next_frame = frames[index + 1]
@@ -56,8 +55,6 @@ point = frames.each_with_index.sum do |frame, index|
   elsif frame.sum == 10 # spare
     next_frame = frames[index + 1]
     frame.sum + next_frame.first
-  else
-    frame.sum
   end
 end
 puts point
