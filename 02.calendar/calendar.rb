@@ -5,9 +5,9 @@ require 'date'
 require 'optparse'
 
 def output_year_month_week(subject_data)
-  year_month = subject_data.month.to_s + '月' + "\s" + subject_data.year.to_s
+  year_month = "#{subject_data.month}月 #{subject_data.year}"
   weeks = "\s日\s月\s火\s水\s木\s金\s土"
-  puts year_month.center(20) + "\n" + weeks.center(1)
+  puts "#{year_month.center(20)}\n#{weeks.center(1)}"
 end
 
 # 指定した年月の日数データを週ごとに表示
