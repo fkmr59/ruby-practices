@@ -11,9 +11,7 @@ score = ARGV[0]
 # 取得した引数を1投毎に分割する
 score.split(',')
 # 数値に変換
-score = ARGV[0]
 scores = score.split(',')
-shots = []
 shots = scores.map do |scores_string|
   if scores_string == 'X'
     10
@@ -52,7 +50,8 @@ point = frames.each_with_index.sum do |frame, index|
       frame.sum + next_frame_score.sum
     end
   # スペアなら次のフレームの1投目の足す
-  elsif frame.sum == 10 # spare
+  else
+    frame.sum == 10 # spare
     next_frame = frames[index + 1]
     frame.sum + next_frame.first
   end
