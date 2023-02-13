@@ -39,8 +39,8 @@ point = frames.each_with_index.sum do |frame, index|
   next frame.sum if index == 9 || frame.sum != 10
 
   # ストライクなら次のフレームの1・2投目を足す
+  next_frame = frames[index + 1]
   if frame[0] == 10 # strike
-    next_frame = frames[index + 1]
     # 連続ストライクなら次のフレームと次のフレーム次のを足す
     if next_frame == [10]
       after_next_frame = frames[index + 2]
@@ -49,9 +49,8 @@ point = frames.each_with_index.sum do |frame, index|
       next_frame_score = next_frame.first(2)
       frame.sum + next_frame_score.sum
     end
-  # スペアなら次のフレームの1投目の足す
+    # スペアなら次のフレームの1投目の足す
   else
-    next_frame = frames[index + 1]
     frame.sum + next_frame.first
   end
 end
