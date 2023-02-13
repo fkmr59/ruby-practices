@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 require 'date'
-
 require 'optparse'
 
 def output_year_month_week(subject_data)
