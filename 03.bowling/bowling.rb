@@ -51,7 +51,6 @@ point = frames.each_with_index.sum do |frame, index|
     end
   # スペアなら次のフレームの1投目の足す
   else
-    frame.sum == 10 # spare
     next_frame = frames[index + 1]
     frame.sum + next_frame.first
   end
