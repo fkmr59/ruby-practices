@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 def one_column_items(directories, column_count, surplus)
-  items_column = []
+  items = []
   cut_items = directories.length / column_count
   if surplus.positive?
     surplus.times do
       array_items = directories.slice!(0..cut_items)
-      items_column << array_items
+      items << array_items
     end
   end
   directories.each_slice(cut_items) do |array_items|
-    items_column << array_items
+    items << array_items
   end
-  items_column
+  items
 end
 
 def one_row_items(insert_column_items)
