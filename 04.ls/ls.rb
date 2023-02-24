@@ -2,18 +2,18 @@
 # frozen_string_literal: true
 
 def output_one_column_items(dir, hope_num_columns, surplus)
-  items_arrays_by_column = []
+  items_column = []
   cut_items = dir.length / hope_num_columns
   if surplus.positive?
     surplus.times do
       array_items = dir.slice!(0..cut_items)
-      items_arrays_by_column << array_items
+      items_column << array_items
     end
   end
   dir.each_slice(cut_items) do |array_items|
-    items_arrays_by_column << array_items
+    items_column << array_items
   end
-  items_arrays_by_column
+  items_column
 end
 
 def output_one_row_items(insert_column_items)
