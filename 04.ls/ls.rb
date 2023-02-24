@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def one_column_items(directories, column_count, surplus)
   items_column = []
   cut_items = directories.length / column_count
