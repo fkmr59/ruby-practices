@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-def one_column_items(directories, column_count, surplus)
+def one_column_items(directories)
+  # 列の指定(column_countの数値だけを希望する列数に変える)
+  column_count = 5
+  surplus = directories.length % column_count
   items = []
   cut_items = directories.length / column_count
   if surplus.positive?
@@ -43,12 +46,9 @@ end
 
 # ディレクトリに存在するファイルの取得
 directories = Dir.glob('*')
-# 列の指定(column_countの数値だけを希望する列数に変える)
-column_count = 3
-surplus = directories.length % column_count
 
 # 1列の要素数
-insert_column_items = one_column_items(directories, column_count, surplus)
+insert_column_items = one_column_items(directories)
 # 1行の要素数
 insert_row_items = one_row_items(insert_column_items)
 # 空白処理
