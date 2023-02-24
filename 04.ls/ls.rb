@@ -1,9 +1,9 @@
 # !/user/bin/env ruby
 # frozen_string_literal: true
 
-def output_one_column_items(dir, hope_num_columns, surplus)
+def output_one_column_items(dir, column_count, surplus)
   items_column = []
-  cut_items = dir.length / hope_num_columns
+  cut_items = dir.length / column_count
   if surplus.positive?
     surplus.times do
       array_items = dir.slice!(0..cut_items)
@@ -44,12 +44,12 @@ end
 
 # ディレクトリに存在するファイルの取得
 dir = Dir.glob('*')
-# 列の指定(hope_num_columnsの数値だけを希望する列数に変える)
-hope_num_columns = 3
-surplus = dir.length % hope_num_columns
+# 列の指定(column_countの数値だけを希望する列数に変える)
+column_count = 3
+surplus = dir.length % column_count
 
 # 1列の要素数
-insert_column_items = output_one_column_items(dir, hope_num_columns, surplus)
+insert_column_items = output_one_column_items(dir, column_count, surplus)
 # 1行の要素数
 insert_row_items = output_one_row_items(insert_column_items)
 # 空白処理
