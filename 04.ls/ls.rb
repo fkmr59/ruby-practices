@@ -30,7 +30,7 @@ def one_row_items(insert_column_items)
   items_arrays_by_row
 end
 
-def space_process(insert_row_items)
+def output_space_process(insert_row_items)
   insert_row_items.each do |array|
     array.compact!
     output = ''
@@ -53,4 +53,4 @@ insert_column_items = output_one_column_items(directories, column_count, surplus
 # 1行の要素数
 insert_row_items = one_row_items(insert_column_items)
 # 空白処理
-space_process(insert_row_items)
+output_space_process(insert_row_items)
