@@ -3,15 +3,16 @@
 def one_column_items(directories)
   # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
-  surplus = directories.length % column_count
   items = []
+  surplus = directories.length % column_count
   cut_items = directories.length / column_count
-  if surplus.positive?
+  # if surplus.positive?
     surplus.times do
       array_items = directories.slice!(0..cut_items)
       items << array_items
+      p items
     end
-  end
+  # end
   directories.each_slice(cut_items) do |array_items|
     items << array_items
   end
