@@ -1,22 +1,22 @@
 # !/user/bin/env ruby
 # frozen_string_literal: true
 
-def output_one_column_items(directories, column_count, surplus)
+def output_one_column_items(dir, column_count, surplus)
   items_column = []
-  cut_items = directories.length / column_count
+  cut_items = dir.length / column_count
   if surplus.positive?
     surplus.times do
-      array_items = directories.slice!(0..cut_items)
+      array_items = dir.slice!(0..cut_items)
       items_column << array_items
     end
   end
-  directories.each_slice(cut_items) do |array_items|
+  dir.each_slice(cut_items) do |array_items|
     items_column << array_items
   end
   items_column
 end
 
-def one_row_items(insert_column_items)
+def output_one_row_items(insert_column_items)
   rebuild_repeat = insert_column_items[0].length
   index = 0
   items_arrays_by_row = []
@@ -30,7 +30,7 @@ def one_row_items(insert_column_items)
   items_arrays_by_row
 end
 
-def output_space_process(insert_row_items)
+def space_process(insert_row_items)
   insert_row_items.each do |array|
     array.compact!
     output = ''
@@ -43,14 +43,14 @@ def output_space_process(insert_row_items)
 end
 
 # ディレクトリに存在するファイルの取得
-directories = Dir.glob('*')
+dir = Dir.glob('*')
 # 列の指定(column_countの数値だけを希望する列数に変える)
 column_count = 3
-surplus = directories.length % column_count
+surplus = dir.length % column_count
 
 # 1列の要素数
-insert_column_items = output_one_column_items(directories, column_count, surplus)
+insert_column_items = output_one_column_items(dir, column_count, surplus)
 # 1行の要素数
-insert_row_items = one_row_items(insert_column_items)
+insert_row_items = output_one_row_items(insert_column_items)
 # 空白処理
-output_space_process(insert_row_items)
+space_process(insert_row_items)
