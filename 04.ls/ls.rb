@@ -1,4 +1,4 @@
-def output_one_column_items(directories, column_count, surplus)
+def one_column_items(directories, column_count, surplus)
   items_column = []
   cut_items = directories.length / column_count
   if surplus.positive?
@@ -46,7 +46,7 @@ column_count = 3
 surplus = directories.length % column_count
 
 # 1列の要素数
-insert_column_items = output_one_column_items(directories, column_count, surplus)
+insert_column_items = one_column_items(directories, column_count, surplus)
 # 1行の要素数
 insert_row_items = one_row_items(insert_column_items)
 # 空白処理
