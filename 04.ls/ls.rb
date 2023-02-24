@@ -1,6 +1,3 @@
-# !/user/bin/env ruby
-# frozen_string_literal: true
-
 def output_one_column_items(directories, column_count, surplus)
   items_column = []
   cut_items = directories.length / column_count
