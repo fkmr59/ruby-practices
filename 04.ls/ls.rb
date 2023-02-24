@@ -2,7 +2,7 @@
 
 def one_column_items(directories)
   # 列の指定(column_countの数値だけを希望する列数に変える)
-  column_count = 5
+  column_count = 3
   surplus = directories.length % column_count
   items = []
   cut_items = directories.length / column_count
@@ -38,7 +38,7 @@ def output_space_process(insert_row_items)
     output = ''
     array.each do |str|
       str_length = str.length + 3
-      output += str.to_s.ljust(str_length)
+      output += str.ljust(str_length)
     end
     puts output
   end
