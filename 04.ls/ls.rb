@@ -16,7 +16,7 @@ def output_one_column_items(directories, column_count, surplus)
   items_column
 end
 
-def output_one_row_items(insert_column_items)
+def one_row_items(insert_column_items)
   rebuild_repeat = insert_column_items[0].length
   index = 0
   items_arrays_by_row = []
@@ -51,6 +51,6 @@ surplus = directories.length % column_count
 # 1列の要素数
 insert_column_items = output_one_column_items(directories, column_count, surplus)
 # 1行の要素数
-insert_row_items = output_one_row_items(insert_column_items)
+insert_row_items = one_row_items(insert_column_items)
 # 空白処理
 space_process(insert_row_items)
