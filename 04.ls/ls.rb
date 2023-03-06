@@ -16,12 +16,14 @@ end
 
 def one_row_items(items)
   rebuild_repeat = items[0].length
+  index = 0
   items_arrays_by_row = []
-  rebuild_repeat.times do |index|
+  rebuild_repeat.times do
     items.each do |items_array|
       items_arrays_by_row[index] = [] if items_arrays_by_row[index].nil?
       items_arrays_by_row[index] << items_array[index]
     end
+    index += 1
   end
   items_arrays_by_row
 end
