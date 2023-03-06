@@ -4,9 +4,8 @@ def one_column_items(directories)
   # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
   items = []
-  surplus = directories.length % column_count
   one_column_quantity = directories.length / column_count
-  surplus.times do
+  directories.length % column_count.times do
     items << directories.slice!(0..one_column_quantity)
     p items
   end
