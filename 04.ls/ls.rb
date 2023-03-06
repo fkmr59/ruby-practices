@@ -5,9 +5,8 @@ def one_column_items(directories)
   column_count = 3
   items = []
   one_column_quantity = directories.length / column_count
-  directories.length % column_count.times do
+  directories.length.modulo(column_count).times do
     items << directories.slice!(0..one_column_quantity)
-    p items
   end
   directories.each_slice(one_column_quantity) do |directories_over|
     items << directories_over
