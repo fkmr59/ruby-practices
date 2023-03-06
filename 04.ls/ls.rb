@@ -5,13 +5,13 @@ def one_column_items(directories)
   column_count = 3
   items = []
   surplus = directories.length % column_count
-  
-  cut_items = directories.length / column_count
+  one_column_quantity = directories.length / column_count
   surplus.times do
-    items << directories.slice!(0..cut_items)
+    items << directories.slice!(0..one_column_quantity)
+    p items
   end
-  directories.each_slice(cut_items) do |array_items|
-    items << array_items
+  directories.each_slice(one_column_quantity) do |directories_over|
+    items << directories_over
   end
   items
 end
