@@ -8,8 +8,7 @@ def one_column_items(directories)
   
   cut_items = directories.length / column_count
   surplus.times do
-    array_items = directories.slice!(0..cut_items)
-    items << array_items
+    items << directories.slice!(0..cut_items)
   end
   directories.each_slice(cut_items) do |array_items|
     items << array_items
