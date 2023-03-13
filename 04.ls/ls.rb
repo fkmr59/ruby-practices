@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-def one_column_items(directories)
+def one_column_items(file_count)
   # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
   items = []
-  one_column_quantity = directories.length / column_count
-  directories.length.modulo(column_count).times do
-    items << directories.slice!(0..one_column_quantity)
+  one_column_quantity = file_count.length / column_count
+  file_count.length.modulo(column_count).times do
+    items << file_count.slice!(0..one_column_quantity)
   end
-  directories.each_slice(one_column_quantity) do |directories_over|
-    items << directories_over
+  file_count.each_slice(one_column_quantity) do |file_count_over|
+    items << file_count_over
   end
   items
 end
@@ -39,10 +39,10 @@ def output_space_process(items)
 end
 
 # ディレクトリに存在するファイルの取得
-directories = Dir.glob('*')
+file_count = Dir.glob('*')
 
 # 1列の要素数
-items = one_column_items(directories)
+items = one_column_items(file_count)
 # 1行の要素数
 items = one_row_items(items)
 # 空白処理
