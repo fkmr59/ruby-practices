@@ -14,11 +14,11 @@ def one_column_items(file_count)
   items
 end
 
-def one_row_items(items)
-  rebuild_count = items[0].length
+def one_row_items(columns)
+  rebuild_count = columns[0].length
   items_by_row = []
   rebuild_count.times do |index|
-    items.each do |items_array|
+    columns.each do |items_array|
       items_by_row[index] = [] if items_by_row[index].nil?
       items_by_row[index] << items_array[index]
     end
@@ -26,13 +26,13 @@ def one_row_items(items)
   items_by_row
 end
 
-def output_space_process(items)
-  items.each do |array|
-    array.compact!
+def output_space_process(rows)
+  rows.each do |row|
+    row.compact!
     output = ''
-    array.each do |str|
-      str_length = str.length + 3
-      output += str.ljust(str_length)
+    row.each do |item|
+      item_length = item.length + 3
+      output += item.ljust(item_length)
     end
     puts output
   end
@@ -42,8 +42,8 @@ end
 file_count = Dir.glob('*')
 
 # 1列の要素数
-items = one_column_items(file_count)
+columns = one_column_items(file_count)
 # 1行の要素数
-items = one_row_items(items)
+rows = one_row_items(columns)
 # 空白処理
-output_space_process(items)
+output_space_process(rows)
