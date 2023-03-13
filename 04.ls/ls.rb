@@ -10,35 +10,20 @@ def one_column_items(file_count)
   columns_items
 end
 
-def one_row_items(columns)
-  rebuild_count = columns[0].length
-  items_by_row = []
-  rebuild_count.times do |index|
-    columns.each do |items_array|
-      items_by_row[index] = [] if items_by_row[index].nil?
-      items_by_row[index] << items_array[index]
-    end
-  end
-  items_by_row
-end
-
-def output_space_process(rows)
-  rows.each do |row|
+def output_row_space_process(columns)
+  columns.transpose.each do |row|
     row.compact!
     output = ''
-    row.each do |item|
-      output += item.ljust(item.length + 3)
+    row.each do |item_space|
+      output += item_space.ljust(item_space.length + 3)
     end
     puts output
   end
 end
 
 # ディレクトリに存在するファイルの取得
-p file_count = Dir.glob('*')
-
+file_count = Dir.glob('*')
 # 1列の要素数
 columns = one_column_items(file_count)
-# 1行の要素数
-rows = one_row_items(columns)
 # 空白処理
-output_space_process(rows)
+output_row_space_process(columns)
