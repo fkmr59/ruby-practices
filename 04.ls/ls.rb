@@ -31,8 +31,7 @@ def output_space_process(rows)
     row.compact!
     output = ''
     row.each do |item|
-      item_length = item.length + 3
-      output += item.ljust(item_length)
+      output += item.ljust(item.length + 3)
     end
     puts output
   end
