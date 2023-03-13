@@ -15,9 +15,9 @@ def one_column_items(file_count)
 end
 
 def one_row_items(items)
-  rebuild_repeat = items[0].length
+  rebuild_count = items[0].length
   items_arrays_by_row = []
-  rebuild_repeat.times do |index|
+  rebuild_count.times do |index|
     items.each do |items_array|
       items_arrays_by_row[index] = [] if items_arrays_by_row[index].nil?
       items_arrays_by_row[index] << items_array[index]
