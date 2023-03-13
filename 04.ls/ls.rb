@@ -16,14 +16,14 @@ end
 
 def one_row_items(items)
   rebuild_count = items[0].length
-  items_arrays_by_row = []
+  items_by_row = []
   rebuild_count.times do |index|
     items.each do |items_array|
-      items_arrays_by_row[index] = [] if items_arrays_by_row[index].nil?
-      items_arrays_by_row[index] << items_array[index]
+      items_by_row[index] = [] if items_by_row[index].nil?
+      items_by_row[index] << items_array[index]
     end
   end
-  items_arrays_by_row
+  items_by_row
 end
 
 def output_space_process(items)
