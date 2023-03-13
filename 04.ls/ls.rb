@@ -3,15 +3,11 @@
 def one_column_items(file_count)
   # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
-  items = []
-  one_column_quantity = file_count.length.div(column_count)
-  file_count.length.modulo(column_count).times do
-    items << file_count.slice!(0..one_column_quantity)
+  columns_items = []
+  file_count.each_slice(file_count.length.div(column_count) + 1) do |one_column|
+    columns_items << one_column
   end
-  file_count.each_slice(one_column_quantity) do |file_count_over|
-    items << file_count_over
-  end
-  items
+  columns_items
 end
 
 def one_row_items(columns)
@@ -38,7 +34,7 @@ def output_space_process(rows)
 end
 
 # ディレクトリに存在するファイルの取得
-file_count = Dir.glob('*')
+p file_count = Dir.glob('*')
 
 # 1列の要素数
 columns = one_column_items(file_count)
