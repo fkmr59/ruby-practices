@@ -4,7 +4,7 @@ def one_column_items(file_count)
   # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
   items = []
-  one_column_quantity = file_count.length / column_count
+  one_column_quantity = file_count.length.div(column_count)
   file_count.length.modulo(column_count).times do
     items << file_count.slice!(0..one_column_quantity)
   end
