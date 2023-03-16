@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
-def one_column_items(file__name_array)
+def space_add(file__name_array)
+  ary = []
+  max_length = file__name_array.max.ljust(file__name_array.max.length + 1)
+  file__name_array.each do |item|
+    ary << item.ljust(max_length.length) if item.length < max_length.length
+  end
+  ary
+end
+
+def one_column_items(blank_process)
   column_count = 3
-  one_column_items = file__name_array.each_slice(file__name_array.length.div(column_count) + 1).to_a
+  one_column_items = blank_process.each_slice(blank_process.length.div(column_count) + 1).to_a
   if one_column_items.last.length == column_count
     one_column_items.transpose
   else
@@ -13,20 +22,19 @@ def one_column_items(file__name_array)
   end
 end
 
-def output_row_space_process(columns)
+def output_row_items(columns)
   columns.transpose.each do |row|
     row.compact!
-    output = ''
-    row.each do |item_space|
-      output += item_space.ljust(item_space.length + 3)
-    end
-    puts output
+    p row
   end
 end
 
+
 # ディレクトリに存在するファイルの取得
 file__name_array = Dir.glob('*')
-# 1列の要素数
-columns = one_column_items(file__name_array)
 # 空白処理
-output_row_space_process(columns)
+blank_process = space_add(file__name_array)
+# 1列の要素数
+columns = one_column_items(blank_process)
+# 1行の要素数を出力
+output_row_items(columns)
