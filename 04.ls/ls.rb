@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 def one_column_items(file__name_array)
-  # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
-  file__name_array.each_slice(file__name_array.length.div(column_count) + 1).to_a
+  one_column_items = file__name_array.each_slice(file__name_array.length.div(column_count) + 1).to_a
+  if one_column_items.last.length == column_count
+    one_column_items.transpose
+  else
+    (one_column_items.first.length - one_column_items.last.length).times do
+      one_column_items.last.push(nil)
+    end
+  one_column_items  
+  end
 end
 
 def output_row_space_process(columns)
