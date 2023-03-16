@@ -9,7 +9,7 @@ def one_column_items(file__name_array)
     (one_column_items.first.length - one_column_items.last.length).times do
       one_column_items.last.push(nil)
     end
-  one_column_items  
+    one_column_items
   end
 end
 
