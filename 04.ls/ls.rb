@@ -3,11 +3,7 @@
 def one_column_items(file__name_array)
   # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
-  columns_items = []
-  file__name_array.each_slice(file__name_array.length.div(column_count) + 1) do |one_column|
-    columns_items << one_column
-  end
-  columns_items
+  file__name_array.each_slice(file__name_array.length.div(column_count) + 1).to_a
 end
 
 def output_row_space_process(columns)
