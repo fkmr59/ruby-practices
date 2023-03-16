@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-def one_column_items(file_array)
+def one_column_items(file__name_array)
   # 列の指定(column_countの数値だけを希望する列数に変える)
   column_count = 3
   columns_items = []
-  file_array.each_slice(file_array.length.div(column_count) + 1) do |one_column|
+  file__name_array.each_slice(file__name_array.length.div(column_count) + 1) do |one_column|
     columns_items << one_column
   end
   columns_items
@@ -22,8 +22,8 @@ def output_row_space_process(columns)
 end
 
 # ディレクトリに存在するファイルの取得
-file_array = Dir.glob('*')
+file__name_array = Dir.glob('*')
 # 1列の要素数
-columns = one_column_items(file_array)
+columns = one_column_items(file__name_array)
 # 空白処理
 output_row_space_process(columns)
