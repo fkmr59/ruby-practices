@@ -1,16 +1,12 @@
 # frozen_string_literal: true
 
 def space_file_array(file_array)
-  space_file_array = []
   initial_value = 0
   file_array.each do |item|
     string_length = item.length
     initial_value = string_length if initial_value < string_length
   end
-  file_array.each do |item|
-    space_file_array << item.ljust(initial_value + 1)
-  end
-  space_file_array
+  file_array.map { |space_file_array| space_file_array.ljust(initial_value + 1) }
 end
 
 def one_column_items(items)
