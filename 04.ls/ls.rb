@@ -34,7 +34,7 @@ def output_row_items(columns)
 end
 
 # ディレクトリに存在するファイルの取得
-file_array = Dir.glob('*')
+files = Dir.glob('*')
 # 空白処理
 items = space_file_array(file_array)
 # # 1列の要素数
