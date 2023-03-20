@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-def space_files(files)
+def files_space_process(files)
   initial_value = 0
   files.each do |item|
     string_length = item.length
     initial_value = string_length if initial_value < string_length
   end
-  files.map { |space_files| space_files.ljust(initial_value + 1) }
+  files.map { |files_space_process| files_space_process.ljust(initial_value + 1) }
 end
 
 def one_column_items(items)
@@ -36,7 +36,7 @@ end
 # ディレクトリに存在するファイルの取得
 files = Dir.glob('*')
 # 空白処理
-items = space_files(files)
+items = files_space_process(files)
 # # 1列の要素数
 columns = one_column_items(items)
 # # 1行の要素数を出力
