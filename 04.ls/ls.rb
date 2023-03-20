@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-def files_space_process(files)
+def files_get_together_long_file_name(files)
   initial_value = 0
-  files.each do |item|
-    string_length = item.length
+  files.each do |file|
+    string_length = file.length
     initial_value = string_length if initial_value < string_length
   end
-  files.map { |files_space_process| files_space_process.ljust(initial_value + 1) }
+  files.map { |files_get_together_long_file_name| files_get_together_long_file_name.ljust(initial_value + 1) }
 end
 
 def one_column_items(items)
@@ -32,11 +32,8 @@ end
 # ディレクトリに存在するファイルの取得
 files = Dir.glob('*')
 # 空白処理
-items = files_space_process(files)
+items = files_get_together_long_file_name(files)
 # 1列の要素数
 columns = one_column_items(items)
 # 1行の要素数を出力
 output_row_items(columns)
-
-
-longstring same files
