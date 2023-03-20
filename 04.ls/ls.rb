@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 def files_get_together_long_file_name(files)
-  string_initial_value = 0
+  file_name_initial_length = 0
   files.each do |file|
     file_name_length = file.length
-    string_initial_value = file_name_length if string_initial_value < file_name_length
+    file_name_initial_length = file_name_length if file_name_initial_length < file_name_length
   end
-  files.map { |files_get_together_long_file_name| files_get_together_long_file_name.ljust(string_initial_value + 1) }
+  files.map { |files_get_together_long_file_name| files_get_together_long_file_name.ljust(file_name_initial_length + 1) }
 end
 
 def one_column_items(items)
