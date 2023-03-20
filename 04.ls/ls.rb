@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-def space_file_array(file_array)
+def space_files(files)
   initial_value = 0
-  file_array.each do |item|
+  files.each do |item|
     string_length = item.length
     initial_value = string_length if initial_value < string_length
   end
-  file_array.map { |space_file_array| space_file_array.ljust(initial_value + 1) }
+  files.map { |space_files| space_files.ljust(initial_value + 1) }
 end
 
 def one_column_items(items)
@@ -36,7 +36,7 @@ end
 # ディレクトリに存在するファイルの取得
 files = Dir.glob('*')
 # 空白処理
-items = space_file_array(file_array)
+items = space_files(files)
 # # 1列の要素数
 columns = one_column_items(items)
 # # 1行の要素数を出力
