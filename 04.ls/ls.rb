@@ -11,7 +11,7 @@ end
 
 def one_column_items(items)
   column_count = 3
-  one_column_items = items.each_slice(items.length.div(column_count) + 1).to_a
+  one_column_items = items.each_slice(items.length.div(column_count)).to_a
   if one_column_items.last.length == column_count
     one_column_items.transpose
   else
