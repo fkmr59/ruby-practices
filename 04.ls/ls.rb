@@ -25,11 +25,7 @@ end
 def output_row_items(columns)
   columns.transpose.each do |row|
     row.compact!
-    output = ''
-    row.each do |item|
-      output += item
-    end
-    puts output
+    puts row.join
   end
 end
 
@@ -37,7 +33,10 @@ end
 files = Dir.glob('*')
 # 空白処理
 items = files_space_process(files)
-# # 1列の要素数
+# 1列の要素数
 columns = one_column_items(items)
-# # 1行の要素数を出力
+# 1行の要素数を出力
 output_row_items(columns)
+
+
+longstring same files
