@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-def files_get_together_long_file_name(files)
-  file_name_initial_length = 0
+def adjust_string_length(files)
+  right_join_space = 0
   files.each do |file|
     file_name_length = file.length
-    file_name_initial_length = file_name_length if file_name_initial_length < file_name_length
+    right_join_space = file_name_length if right_join_space < file_name_length
   end
-  files.map { |files_get_together_long_file_name| files_get_together_long_file_name.ljust(file_name_initial_length + 1) }
+  files.map { |adjust_string_length| adjust_string_length.ljust(right_join_space + 1) }
 end
 
 def one_column_items(items)
@@ -32,7 +32,7 @@ end
 # ディレクトリに存在するファイルの取得
 files = Dir.glob('*')
 # 空白処理
-items = files_get_together_long_file_name(files)
+items = adjust_string_length(files)
 # 1列の要素数
 columns = one_column_items(items)
 # 1行の要素数を出力
