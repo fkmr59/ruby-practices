@@ -6,7 +6,7 @@ def adjust_string_length(files)
     file_name_length = file.length
     right_join_space = file_name_length if right_join_space < file_name_length
   end
-  files.map { |adjust_string_length| adjust_string_length.ljust(right_join_space + 1) }
+  files.map { |file| file.ljust(right_join_space + 1) }
 end
 
 def one_column_items(items)
