@@ -4,66 +4,61 @@
 /**************/
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 #include <time.h>
 
-void  main( )
+int main( )
 {
-    int  n;
+    int n;
 
     printf("さいころを振ります。\n何かキーを押してください。\n");
-    getch( );                         // キー入力待ち
+    getchar(); // キー入力待ち
 
-    srand(time(NULL));                // 乱数の準備
+    srand(time(NULL)); // 乱数の準備
 
-    n=rand( )%6+1;                    // 乱数からさいころの目を計算
+    n=rand( )%6+1; // 乱数からさいころの目を計算
 
-    if ( n==1 )
-      {
+    if ( n==1 ) {
         printf("+--------+\n");
         printf("|        |\n");
         printf("|   ●   |\n");
         printf("|        |\n");
         printf("+--------+\n");
-      }
-    else if ( n==2 )
-      {
+    }
+    else if ( n==2 ) {
         printf("+--------+\n");
         printf("| ●     |\n");
         printf("|        |\n");
         printf("|     ● |\n");
         printf("+--------+\n");
-      }
-    else if ( n==3 )
-      {
+    }
+    else if ( n==3 ) {
         printf("+--------+\n");
         printf("| ●     |\n");
         printf("|   ●   |\n");
         printf("|     ● |\n");
         printf("+--------+\n");
-      }
-    else if ( n==4 )
-      {
+    }
+    else if ( n==4 ) {
         printf("+--------+\n");
         printf("| ●  ● |\n");
         printf("|        |\n");
         printf("| ●  ● |\n");
         printf("+--------+\n");
-      }
-    else if ( n==5 )
-      {
+    }
+    else if ( n==5 ) {
         printf("+--------+\n");
         printf("| ●  ● |\n");
         printf("|   ●   |\n");
         printf("| ●  ● |\n");
         printf("+--------+\n");
-      }
-    else
-      {
+    }
+    else {
         printf("+--------+\n");
         printf("| ●  ● |\n");
         printf("| ●  ● |\n");
         printf("| ●  ● |\n");
         printf("+--------+\n");
-      }
+    }
+
+    return 0;
 }
